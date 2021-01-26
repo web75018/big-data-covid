@@ -1,0 +1,3 @@
+# Docker volumes
+apache-spark-docker/logs/
+apache-spark-docker/spark-data/

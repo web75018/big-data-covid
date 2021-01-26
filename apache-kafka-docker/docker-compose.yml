@@ -5,8 +5,6 @@ services:
     container_name: kafka-zookeeper
     ports:
       - 2181:2181
-    networks:
-      - kafka-net
   kafka:
     image: kafka-server
     container_name: kafka-server
@@ -14,10 +12,8 @@ services:
       - 9092:9092
     # volumes:
       # - ./kafka-server/logs:/tmp/kafka-logs
-    networks:
-      - kafka-net
 
-networks:
-    kafka-net:
-        name: kafka_net
-        driver: bridge
+networks: 
+  default: 
+    external: 
+      name: data-net 
