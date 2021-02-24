@@ -10,6 +10,11 @@ def handle_rdd(rdd):
         global ss          
                                                                                                      
         df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date']) 
+        print("##########################################################")
+        print("##########################################################")
+        print(df)
+        print("##########################################################")
+        print("##########################################################")
         df.write.saveAsTable(name='default.covid', format='hive', mode='append')                                       
 
 
