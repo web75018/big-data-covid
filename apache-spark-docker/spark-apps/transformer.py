@@ -7,15 +7,28 @@ from pyspark.streaming.kafka import KafkaUtils
                                                                                                                         
 def handle_rdd(rdd):                                                                                                    
     if not rdd.isEmpty():
-        global ss          
-                                                                                                     
-        df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date']) 
-        print("##########################################################")
-        print("##########################################################")
+        global ss   
+        df = None
+
+        try:                                                                                         
+                df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date'])     
+        except Exception as e:
+                pass
+
+        print("########################################################")
+        print("########################################################")
+        print('\n')
+        print('\n')
+        print('\n')
+
         print(df)
-        print("##########################################################")
-        print("##########################################################")
-        df.write.saveAsTable(name='default.covid', format='hive', mode='append')                                       
+        # df.write.saveAsTable(name='default.covid', format='hive', mode='append')
+                                           
+        print('\n')
+        print('\n')
+        print('\n')
+        print("########################################################")
+        print("########################################################")
 
 
 sc = SparkContext(appName="Something")                                                                                     
