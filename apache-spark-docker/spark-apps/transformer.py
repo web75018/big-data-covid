@@ -10,7 +10,6 @@ def handle_rdd(rdd):
         global ss          
                                                                                                      
         df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date']) 
-        
         df.write.saveAsTable(name='default.covid', format='hive', mode='append')                                       
 
 
@@ -31,7 +30,7 @@ ks = KafkaUtils.createDirectStream(ssc, ['covid-new-cases'], {'metadata.broker.l
                                                                                                                         
 lines = ks.map(lambda x: x[1])                                                                                          
                                                                                                                         
-transform = lines.map(lambda data: (data.split(";")))                                  
+transform = lines.map(lambda data: (data.split(";")))                              
                                                                                                                         
 transform.foreachRDD(handle_rdd)                                                                                        
                                                                                                                         
