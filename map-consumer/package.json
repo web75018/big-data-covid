@@ -32,8 +32,7 @@
   },
   "scripts": {
     "test": "eslint src",
-    "start": "nodemon server.js",
-    "prepublish": "uglifyjs node_modules/simpleheat/simpleheat.js public/src/HeatLayer.js -c -m -o public/dist/leaflet-heat.js"
+    "start": "nodemon server.js"
   },
   "license": "BSD-2-Clause",
   "jshintConfig": {

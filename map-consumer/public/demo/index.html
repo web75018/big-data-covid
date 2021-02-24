@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leaflet.heat demo</title>
+    <title>Covid-19 Big Data By Boutizoua & Bouchal</title>
     <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -27,23 +27,28 @@ var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
-addressPoints = getPositions().map(function (p) { return [p[0], p[1]]; });
+addressPoints = [];
 
 var heat = L.heatLayer(addressPoints).addTo(map);
 
-const ws = new WebSocket('ws://127.0.0.1:3000/websocket/covid-new-cases')
+const ws = new WebSocket('ws://localhost:5000/websocket/covid-new-cases')
 ws.onopen = e => {
   console.log(`WebSocket State ${ws.readyState}`)
 }
 
 ws.onmessage = data => {
-  console.log("DATA ==> ",data);
+  let dt = data.data.split(";");
+
+  console.log(dt);
+
+  let lat = dt[1];
+  let lng = dt[2];
+  
+  heat.addLatLng([lat,lng])
 }
 
-
 ws.onclose = data => {
-  console.log('Closed')
-  console.log(data);
+  console.log('Closed', data);
 }
 
 

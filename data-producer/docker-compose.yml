@@ -2,7 +2,7 @@ version: "3"
 services:
   data-producer:
     image: data-producer
-    container_name: data-producer
+    
     volumes:
       - ./src:/code
   

@@ -37,4 +37,4 @@ while True:
 
     print(f">>> '{frame}'")
     p.send(TOPIC, bytes(frame, encoding="utf8"))
-    sleep(random.randint(1,4))
+    sleep(random.randint(1,2))

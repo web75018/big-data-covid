@@ -5,14 +5,11 @@ services:
     container_name: heat-map-consumer
     ports:
       - "5000:5000"
-    expose:
-      - 5000
     volumes:
-      - ./:/usr/src/app
-    network_mode: host
+      - .:/usr/src/app
   
-# networks: 
-#   default: 
-#     external: 
-#       name: data-net
+networks: 
+  default: 
+    external: 
+      name: data-net
 
