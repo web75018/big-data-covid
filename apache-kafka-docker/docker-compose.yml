@@ -12,7 +12,6 @@ services:
       - 9092:9092
     # volumes:
       # - ./kafka-server/logs:/tmp/kafka-logs
-
 networks: 
   default: 
     external: 

@@ -4,10 +4,10 @@ from random import randint
 from time import sleep                                                                                                  
 import sys                                                                                                              
 
-BROKER = 'kafka-server:9092'                                                                                               
+BROKER = 'localhost:9092'                                                                                               
 TOPIC = 'covid-new-case'                                                                                                      
 
-WORD_FILE = '/usr/share/dict/words'                                                                                     
+WORD_FILE = 'data.csv'                                                                                     
 WORDS = open(WORD_FILE).read().splitlines()                                                                             
 
 try:                                                                                                                    
@@ -22,4 +22,5 @@ while True:
         message += WORDS[randint(0, len(WORDS)-1)] + ' '                                                                
     print(f">>> '{message}'")                                                                                           
     p.send(TOPIC, bytes(message, encoding="utf8"))                                                                      
+    
     sleep(randint(1,4))

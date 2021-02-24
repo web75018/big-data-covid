@@ -9,7 +9,8 @@ def handle_rdd(rdd):
     if not rdd.isEmpty():
         global ss          
                                                                                                      
-        df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date'])                                                
+        df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date']) 
+        
         df.write.saveAsTable(name='default.covid', format='hive', mode='append')                                       
 
 
@@ -21,8 +22,9 @@ ss = SparkSession.builder \
         .config("spark.sql.warehouse.dir", "/user/hive/warehouse") \
         .config("hive.metastore.uris", "thrift://hive-metastore:9083") \
         .enableHiveSupport() \
-        .getOrCreate()                                                                              
-                                                                                                                        
+        .getOrCreate()
+
+
 # ss.sparkContext.setLogLevel('WARN')                                                                                     
                                                                                                                         
 ks = KafkaUtils.createDirectStream(ssc, ['covid-new-cases'], {'metadata.broker.list': 'kafka-server:9092'})                       
