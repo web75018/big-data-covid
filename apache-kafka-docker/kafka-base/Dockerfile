@@ -9,4 +9,5 @@ RUN rm kafka_2.13-2.7.0.tgz
 
 ENV KAFKA_HOME /usr/bin/kafka
 ENV PATH /usr/bin/kafka/bin:/usr/bin/kafka/bin:$PATH
+EXPOSE 9092
 WORKDIR /usr/bin/kafka

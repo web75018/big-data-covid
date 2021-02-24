@@ -8,10 +8,10 @@ import datetime
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
-BROKER = 'localhost:9092'
-TOPIC = 'covid-new-case'
+BROKER = 'kafka-server:9092'
+TOPIC = 'covid-new-cases'
 
-POSITIONS_FILE = dir + '\\data.csv'
+POSITIONS_FILE = dir + '/data.csv'
 
 try:
     p = KafkaProducer(bootstrap_servers=BROKER)
