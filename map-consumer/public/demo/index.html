@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet.heat demo</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <style>
+        #map { width: 98vw; height: 97vh; }
+        body { font: 16px/1.4 "Helvetica Neue", Arial, sans-serif; }
+        .ghbtns { position: relative; top: 4px; margin-left: 5px; }
+        a { color: #0077ff; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="../dist/leaflet-heat.js"></script>
+
+<script src="./samples.js"></script>
+<script>
+
+var map = L.map('map').setView([33.982051, -6.863709], 16);
+
+var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
+addressPoints = getPositions().map(function (p) { return [p[0], p[1]]; });
+
+var heat = L.heatLayer(addressPoints).addTo(map);
+
+const ws = new WebSocket('ws://127.0.0.1:3000/websocket/covid-new-cases')
+ws.onopen = e => {
+  console.log(`WebSocket State ${ws.readyState}`)
+}
+
+ws.onmessage = data => {
+  console.log("DATA ==> ",data);
+}
+
+
+ws.onclose = data => {
+  console.log('Closed')
+  console.log(data);
+}
+
+
+</script>
+</body>
+</html>
