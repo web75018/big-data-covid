@@ -14,14 +14,15 @@ def handle_rdd(rdd):
                 df = ss.createDataFrame(rdd, schema=['id','lat','lng','aff_date'])     
         except Exception as e:
                 pass
+
         print("########################################################")
         print("########################################################")
         print('\n')
         print('\n')
         print('\n')
 
-        print(df)                                           
-        # df.write.saveAsTable(name='default.covid', format='hive', mode='append')    
+        print(df)
+        # df.write.saveAsTable(name='default.covid', format='hive', mode='append')
                                            
         print('\n')
         print('\n')
